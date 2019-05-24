@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Friend Finder</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+	<div class="container">
+		<h2>Survey Questions</h2>
+    <hr>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <form>
+          <div class="form-group">
+            <h4>Question 1</h4>
+              <label for="1">Do you consider yourself a conscientious person?</label>
+              <select class="form-control" id="1">
+                <option disabled selected>-- Please Select --</option>
+                <option value ="1">1 (strongly disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (strongly agree)</option>
+              </select>
+          </div>
+          <div class="form-group">
+            <h4>Question 2</h4>
+              <label for="2">Do you know what the word conscientious means?</label>
+              <select class="form-control" id="2">
+                <option disabled selected>-- Please Select --</option>
+                <option value ="1">1 (strongly disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (strongly agree)</option>
+              </select>
+          </div>
+           <div class="form-group">
+            <h4>Question 3</h4>
+              <label for="3">Do you need a lot of downtime?</label>
+              <select class="form-control" id="3">
+                <option disabled selected>-- Please Select --</option>
+                <option value ="1">1 (strongly disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (strongly agree)</option>
+              </select>
+          </div>
+           <div class="form-group">
+            <h4>Question 4</h4>
+              <label for="4">Do you have a strict diet?</label>
+              <select class="form-control" id="4">
+                <option disabled selected>-- Please Select --</option>
+                <option value ="1">1 (strongly disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (strongly agree)</option>
+              </select>
+          </div>
+           <div class="form-group">
+            <h4>Question 5</h4>
+              <label for="5">Are you religious?</label>
+              <select class="form-control" id="5">
+                <option disabled selected>-- Please Select --</option>
+                <option value ="1">1 (strongly disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (strongly agree)</option>
+              </select>
+          </div>
+           <div class="form-group">
+            <h4>Question 6</h4>
+              <label for="6">How important is it to be disciplined?</label>
+              <select class="form-control" id="6">
+                <option disabled selected>-- Please Select --</option>
+                <option value ="1">1 (strongly disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (strongly agree)</option>
+              </select>
+          </div>
+           <div class="form-group">
+            <h4>Question 7</h4>
+              <label for="7">Do you prefer a beach vacation over the mountains?</label>
+              <select class="form-control" id="7">
+                <option disabled selected>-- Please Select --</option>
+                <option value ="1">1 (strongly disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (strongly agree)</option>
+              </select>
+          </div>
+          <div class="form-group">
+            <h4>Question 8</h4>
+              <label for="8">Do you enjoy warm weather?</label>
+              <select class="form-control" id="8">
+                <option disabled selected>-- Please Select --</option>
+                <option value ="1">1 (strongly disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (strongly agree)</option>
+              </select>
+          </div>
+          <div class="form-group">
+            <h4>Question 9</h4>
+              <label for="9">Is family more important than work?</label>
+              <select class="form-control" id="9">
+                <option disabled selected>-- Please Select --</option>
+                <option value ="1">1 (strongly disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (strongly agree)</option>
+              </select>
+          </div>
+           <div class="form-group">
+            <h4>Question 10</h4>
+              <label for="10">Is a sense of humor important?</label>
+              <select class="form-control" id="10">
+                <option disabled selected>-- Please Select --</option>
+                <option value ="1">1 (strongly disagree)</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5 (strongly agree)</option>
+              </select>
+          </div>
+          <br>
+          <div id="submit-btn">
+            <button>submit</button>
+            <br>
+          </div>
+        </form>
+      </div>
+    </div>
+    
+
+    <div class="modal fade" id="match-modal">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title">Here is Your Match!</h2>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" id="matched-display">
+            <div id="display-name"></div>
+            <div id="display-img"></div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+	</div>
+  
+<script>
+   
+  $("#submit").on("click", function(event) {
+    event.preventDefault(); 
+    var validate = true
+  
+    for(i = 1; i < 11 ; i++) {
+      if(!$("#q"+ i).val()) {
+        validate = false
+      } 
+    }
+    {
+      event.preventDefault(); 
+      var user = {
+        name: $("#name").val().trim(),
+        img: $("#photo").val().trim(),
+        answer: [
+        $("#1").val().substr(0,1),
+        $("#2").val().substr(0,1),
+        $("#3").val().substr(0,1),
+        $("#4").val().substr(0,1),
+        $("#5").val().substr(0,1),
+        $("#6").val().substr(0,1),
+        $("#7").val().substr(0,1),
+        $("#8").val().substr(0,1),
+        $("#9").val().substr(0,1),
+        $("#10").val().substr(0,1)
+        ] 
+      }; 
+      console.log(user)
+      console.log(user.answer)
+      $.post("/api/friends", user, function(data) {
+       console.log(data)
+       $("#display-name").html("<h3>" + data.nameMatch + "<h3>")
+       $("#display-img").html("<img src=" + data.imgMatch + ">")
+       $("#match-modal").modal("toggle")
+      })
+    }
+  })
+</script>
+
+</body>
+</html>
