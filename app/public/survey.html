@@ -9,11 +9,19 @@
 <body>
 	<div class="container">
 		<h2>Survey Questions</h2>
-    <hr>
-    <div class="panel panel-default">
+    
+    <div class="panel-default">
       <div class="panel-body">
         <form>
           <div class="form-group">
+                <label for="name">Name (Required)</label>
+                <input type="text" class="form-control" id="name">
+              </div>
+              <div class="form-group">
+                <label for="photo">Link to Photo Image (Required)</label>
+                <input type="url" class="form-control" id="photo">
+              </div>
+            <div class="form-group">
             <h4>Question 1</h4>
               <label for="1">Do you consider yourself a conscientious person?</label>
               <select class="form-control" id="1">
@@ -24,7 +32,7 @@
                 <option value="4">4</option>
                 <option value="5">5 (strongly agree)</option>
               </select>
-          </div>
+            </div>
           <div class="form-group">
             <h4>Question 2</h4>
               <label for="2">Do you know what the word conscientious means?</label>
@@ -99,7 +107,7 @@
           </div>
           <div class="form-group">
             <h4>Question 8</h4>
-              <label for="8">Do you enjoy warm weather?</label>
+              <label for="8">Are you an introvert?</label>
               <select class="form-control" id="8">
                 <option disabled selected>-- Please Select --</option>
                 <option value ="1">1 (strongly disagree)</option>
@@ -134,9 +142,13 @@
               </select>
           </div>
           <br>
-          <div id="submit-btn">
-            <button>submit</button>
+          <div>
+            <button id="submit-btn">submit</button>
             <br>
+          </div>
+          <br>
+          <div>
+            <a href="/api/friends">API Friend List</a>
           </div>
         </form>
       </div>
@@ -167,21 +179,26 @@
   
 <script>
    
-  $("#submit").on("click", function(event) {
+  $("#submit-btn").on("click", function(event) {
     event.preventDefault(); 
     var validate = true
   
     for(i = 1; i < 11 ; i++) {
-      if(!$("#q"+ i).val()) {
+      if(!$("#"+ i).val()) {
         validate = false
       } 
     }
+    if ($("#name").val() === "" || $("#photo").val() === "" || validate === false) {
+      alert("Please Fill Out All Fields"); 
+    }
+    else 
+    
     {
       event.preventDefault(); 
       var user = {
         name: $("#name").val().trim(),
         img: $("#photo").val().trim(),
-        answer: [
+        scores: [
         $("#1").val().substr(0,1),
         $("#2").val().substr(0,1),
         $("#3").val().substr(0,1),
@@ -195,14 +212,16 @@
         ] 
       }; 
       console.log(user)
-      console.log(user.answer)
+      
+
       $.post("/api/friends", user, function(data) {
        console.log(data)
-       $("#display-name").html("<h3>" + data.nameMatch + "<h3>")
-       $("#display-img").html("<img src=" + data.imgMatch + ">")
+       $("#display-name").html("<h3>" + data.name + "<h3>")
+       $("#display-img").html("<img src=" + data.photo + ">")
        $("#match-modal").modal("toggle")
       })
     }
+
   })
 </script>
 

@@ -1,46 +1,36 @@
-// Pull in required dependencies
-var path = require('path');
-var friends = require('../data/friends.js');
+var friendData = require('../data/friends.js');
 
-module.exports = function(app) {
-	app.get('/api/friends', function(req, res) {
-		res.json(friends);
-	});
+module.exports = function(app){
 
-	app.post('/api/friends', function(req, res) {
-		// Capture the user input
-		var user = req.body;
-		friendData.push(user)
+    app.get('/api/friends', function(req, res){
+        console.log("Reading API");
+        res.json(friendData);
+    });
 
-		// Find best match
-		var nameArr = [];
-		var imgArr = [];
-        var differenceArr = []
-        var objectArr = [];
-        totalDifference = 0; 
+    app.post("/api/friends", function(req, res) {
+      //setup variables for finding match
+        var newFriend = req.body;
+        var newScore = newFriend.scores;
+        var total = 0;
+        var bestMatch = 1000;
+        var index = -1;
 
-		for (var i = 0; i < friendData.length - 1 ; i++) {
-			nameArr.push(friendData[i].name)
-			imgArr.push(friendData[i].img)
-			totalDifference = 0
+        for(var i = 0; i < friendData.length; i++){
+            //Iterate through the whole list of friends already in database
+            total = 0;
 
-			for (var j = 0 ; j < 10 ; j++) { 
-				totalDifference += Math.abs(parseInt(user.answer[j]) - parseInt(friendData[i].answer[j]))
-			}; 
-			differenceArr.push(totalDifference)
-		};
-		console.log(nameArr)
-		console.log(imgArr)
-		console.log(differenceArr)
-
-		for (var i = 0; i < nameArr.length; i++) {
-		 	objectArr.push({"nameMatch": nameArr[i], "imgMatch": imgArr[i],  "answerMatch": differenceArr[i]})
-		 }
-
-		 objectArr.sort(function(a, b) {return a.answerMatch - b.answerMatch})
-		 console.log(objectArr) 
-
-		 res.json(objectArr[0])
-
-	});
-}
+            for(var j = 0; j < newScore.length; j++){
+                //for each friend calculate the total value
+                var diff = Math.abs(newScore[j] - friendData[i].scores[j]);
+                total += diff;
+            }
+            if(total < bestMatch){
+                bestMatch = total;
+                index = i;
+            }
+        }
+        console.log('Best Match:', friendData[index]);
+        friendData.push(newFriend);
+        res.json(friendData[index]);
+    });
+};
