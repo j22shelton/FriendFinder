@@ -4,7 +4,7 @@ Friend finder is similar to a dating app. This full-stack site will take in resu
 
 ## Code Explanation
 - Express is used to run the server.
-- The HTML in the "public" folder are the front-end portion of the code which make up what the user views.
+- The HTML in the "public" folder makes up the front-end portion of the code which make up what the user views.
 - The files in the "routing" folder determine the back-end logic. The API routes send back existing content in the server-side data.
 - The match is determined by calculating the friend with the minimal difference in scores and then sending that friend to the browser as a JSON object.
 
