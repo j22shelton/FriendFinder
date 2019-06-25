@@ -20,7 +20,7 @@ Friend finder is similar to a dating app. This full-stack site will take in resu
  - [Jocelyn Shelton](https://github.com/j22shelton)
 
 
-## Live Preview:
+## Deployed Link:
 
  - [Friend Finder](https://protected-sea-80577.herokuapp.com)
 
